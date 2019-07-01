@@ -7,15 +7,12 @@ import { TodoService } from './todo.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'dependency-injection-demo';
-
-  constructor(private todoService:TodoService){
-
-  }
 
   tasks = [];
+  constructor(private todoService: TodoService) {
+  }
 
-  loadTasks(){
+  loadTasks() {
     this.tasks = this.todoService.getTasks();
   }
 }
