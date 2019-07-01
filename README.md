@@ -1,27 +1,46 @@
-# DependencyInjectionDemo
+# Dependency Injection
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.0.4.
 
-## Development server
+#### Create a Service
+```
+ng g service todo
+```
+```
+export class TodoService {
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+  constructor() { }
 
-## Code scaffolding
+  getTasks(){
+    let tasks = ["Install Node", "Install Angular Cli"];
+    return tasks;
+  }
+}
+```
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+#### Inject the Service object in Component
+```
+export class AppComponent {
+  constructor(private todoService:TodoService){
 
-## Build
+  }
+```
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+#### Call Service Method
+```
+export class AppComponent {
 
-## Running unit tests
+  tasks = [];
+  constructor(private todoService: TodoService) {
+  }
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+  loadTasks() {
+    this.tasks = this.todoService.getTasks();
+  }
+}
+```
 
-## Running end-to-end tests
+#### Display Tasks
+```
+{{tasks|json}}
+```
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
