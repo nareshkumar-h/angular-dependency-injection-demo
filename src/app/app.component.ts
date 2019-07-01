@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { TodoService } from './todo.service';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,14 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'dependency-injection-demo';
+
+  constructor(private todoService:TodoService){
+
+  }
+
+  tasks = [];
+
+  loadTasks(){
+    this.tasks = this.todoService.getTasks();
+  }
 }
